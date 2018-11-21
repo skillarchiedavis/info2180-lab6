@@ -1,20 +1,35 @@
-window.onload=function(){
-     let answer = document.getElementById("result");
-     let text =document.getElementById("text").value;
-    
-    var searchX= document.getElementById("button1");
-    searchX.addEventListener("click", function(){
-    let xml = new XMLHttpRequest();
-    xml.onreadystatechange=function(){
-        if(xml.readyState === 4 && xml.status ===200){
-           let response = xml.responseText;
-                answer.innerHTML = response;
-        }
-        
-    };
+window.onload = main;
 
-    xml.open("GET","request.php?q=definition"+text,true);
-    xml.send();
-    });
+function ajax_word_query(word){
+    let httpRequest = new XMLHttpRequest();
+    let url = `/request.php?q=${word}`;
     
-};
+    httpRequest.onreadystatechange = function(){
+        if(httpRequest.readyState === XMLHttpRequest.DONE ){
+            if(httpRequest.status === 200){
+                  document.getElementById("update").innerHTML = httpRequest.responseText;
+            }else{
+                alert("There was some error");
+            }
+        }
+    }
+    
+    httpRequest.open("GET", url, true);
+    httpRequest.send();
+}
+
+function update_word_results(response){
+    document.getElementById("update").innerHTML = response;
+}
+
+function main(){
+    let search = $("#search")[0];
+    search.onclick = function(event){
+        event.preventDefault();
+        ajax_word_query(document.getElementsByName("q")[0].value.trim().toLowerCase(),false);
+        document.getElementsByName("q")[0].value = "";
+    };
+    
+  
+    
+}

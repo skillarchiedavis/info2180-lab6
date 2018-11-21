@@ -1,27 +1,43 @@
 <!DOCTYPE html>
- 
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Lab 6</title>
-  <script type ="text/javascript" src="index.js"></script>
-</head>
-<style type="text/css">
-        h1{
-            background-color: lightblue;
-            padding:10px;
-            margin:0;
-            font-size:40px;
-        }
-        form{
-            background-color: lightgray;
-        }
-    </style>
-	
-<h1> <b> WEB DICTIONARY </b> </h1>
-<form>
-	  <input id="text" type="text" placeholder="Search for Definition..." required>
-	  <input id="button1" type="button" onclick="myFunction()" value="Search">
-	 
-</form>
+    <title>Dictionary</title>
+        <script type="text/javascript" src="index.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <style type="text/css">
+            #top{
+                background-color: lightblue;
+                padding:10px;
+                margin:0;
+                font-size:40px;
+            }
+            #main{
+                background-color: lightgray;
+            }
+        </style>
+        
+</head>    
 
+<body>
+    <div id="overall">
+        <div id="top">Dictionary</div>
+        <div id="main">
+            <h3>Search for a word</h3>
+            <span class="example">eg. Definition, ajax, bar, html, css, javascript, php</span>
+            <form id="search-form">
+                <input type="text" name="q" placeholder="Eg. definition" id="search-bar"/>
+                <input type="Submit" value="Search" id="search"/>
+                <input type="Submit" value="Get all definitions" id="all"/>
+            </form>
+            <hr>
+            <div id="result">
+                <span>Result</span>
+                <div id="update" >
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
+
